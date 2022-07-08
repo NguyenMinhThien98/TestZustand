@@ -2,8 +2,9 @@ import {createSlice} from '@reduxjs/toolkit';
 
 const initialSate = {
   loading: false,
-  error: null,
-  success: false,
+  error: undefined,
+  success: undefined,
+  currentUser: undefined
 };
 
 const loginSlice = createSlice({
@@ -11,26 +12,24 @@ const loginSlice = createSlice({
   initialState: initialSate,
   reducers: {
     reqestLogin(state) {
-      state.loading = true;
+      state = {...initialSate, loading: true}
     },
 
-    loginSuccess(state) {
-      state.loading = false;
-      state.error = false;
-      state.success = true;
+    loginSuccess(state, action) {
+      state = {...initialSate, error: false, success: true, currentUser: action.data}
+
+      
     },
 
     loginFailure(state) {
-      state.loading = false;
-      state.error = true;
-      state.success = false;
+      state = {...initialSate, error: true, success: false}
     },
 
     resetLoginData(state) {
-      state = initialSate;
+      state = {...initialSate};
     },
   },
 });
 
 export const {reqestLogin, loginSuccess, loginFailure, resetLoginData} = loginSlice.actions
-export default loginSlice.reducer
+export default loginSlice.reducer;

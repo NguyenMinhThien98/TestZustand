@@ -1,7 +1,9 @@
-import LoginReducer from '../Components/Login/slice';
+import Login from '../Components/Login/slice';
+import App from '../app/slice';
 
 const rootReducer = {
-    LoginReducer
+    App,
+    Login
 };
 
 export default rootReducer;
